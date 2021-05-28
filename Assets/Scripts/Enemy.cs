@@ -22,20 +22,25 @@ public class Enemy : MonoBehaviour
     float _shakesOccured = 0;
     Vector3 _hitPosition;
 
-    void Start() {
+    void Start()
+    {
         _moveSpeed = Random.Range(minSpeed, maxSpeed);
     }
 
     void Update()
     {
-        if (_hurting) {
+        if (_hurting)
+        {
             Hurt();
-        } else {
+        }
+        else
+        {
             Advance();
         }
     }
 
-    void Advance() {
+    void Advance()
+    {
         transform.position = new Vector2(transform.position.x, transform.position.y - _moveSpeed * Time.deltaTime);
 
         if (transform.position.y < -5.4f) {
@@ -43,10 +48,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Hurt() {
+    void Hurt()
+    {
         _timeElapsed += Time.deltaTime;
 
-        if (_timeElapsed >= shakePeriod) {
+        if (_timeElapsed >= shakePeriod)
+        {
             _timeElapsed -= shakePeriod;
             _shakesOccured++;
 
@@ -56,36 +63,49 @@ public class Enemy : MonoBehaviour
                 = new Vector3(_hitPosition.x + horizontalShake, _hitPosition.y, _hitPosition.z);
         }
 
-        if (_shakesOccured == shakes) {
+        if (_shakesOccured == shakes)
+        {
             _hurting = false;
             transform.position = _hitPosition;
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
         health -= 1;
 
-        if (health <= 0) {
+        if (health <= 0)
+        {
             Die();
-        } else {
+        }
+        else
+        {
             GetHurt();
         }
     }
 
-    void Die() {
+    void Die()
+    {
     
         GameObject explosionSoundObject = GameObject.Find("Explosion Sound");
-        if (explosionSoundObject != null) {
+        if (explosionSoundObject != null)
+        {
             explosionSoundObject.GetComponent<PlayableAudio>().Play();
         }
-        ScreenShaker.Instance.Shake();
+
+        ScreenShaker shaker = ScreenShaker.Instance;
+        if (shaker !== null)
+        {
+
+        } 
+        .Shake();
         Instantiate(boom, new Vector3(transform.position.x, transform.position.y, -1f), transform.rotation);
         Destroy(this.gameObject);
     }
 
-    void GetHurt() {
+    void GetHurt()
+    {
         //Instantiate(spark, new Vector3(transform.position.x, transform.position.y, -2f), transform.rotation);
-
         _hitPosition = transform.position;
         _hurting = true;
         _timeElapsed = shakePeriod;
