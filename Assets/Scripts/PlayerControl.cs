@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour
 {
     public float moveSpeed;
     public float reloadTime;
+    public PlayableAudio shootSound;
 
     public GameObject bullet;
 
@@ -49,6 +50,10 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && remainingReloadTime < 0.0f) {
             Instantiate(bullet, transform.position, transform.rotation);
             remainingReloadTime = reloadTime;
+
+            if (shootSound != null) {
+                shootSound.Play();
+            }
         }
 
         remainingReloadTime -= Time.deltaTime;

@@ -73,13 +73,14 @@ public class Enemy : MonoBehaviour
     }
 
     void Die() {
+        GameObject.Find("Explosion Sound").GetComponent<PlayableAudio>().Play();
         ScreenShaker.Instance.Shake();
         Instantiate(boom, new Vector3(transform.position.x, transform.position.y, -1f), transform.rotation);
         Destroy(this.gameObject);
     }
 
     void GetHurt() {
-        Instantiate(spark, new Vector3(transform.position.x, transform.position.y, -2f), transform.rotation);
+        //Instantiate(spark, new Vector3(transform.position.x, transform.position.y, -2f), transform.rotation);
 
         _hitPosition = transform.position;
         _hurting = true;
