@@ -40,7 +40,7 @@ public class ScreenShaker : MonoBehaviour
             float verticalShake = Random.Range(-magnitude, magnitude);
 
             transform.position
-                = _initialPosition + new Vector3(_initialPosition.x + horizontalShake, _initialPosition.y + verticalShake, 0f);
+                = _initialPosition + new Vector3(horizontalShake, verticalShake, 0f);
         }
 
         if (_shakesOccured == shakes) {

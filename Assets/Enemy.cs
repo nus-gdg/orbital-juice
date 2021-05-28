@@ -13,16 +13,51 @@ public class Enemy : MonoBehaviour
 
     float _moveSpeed;
 
+    public float shakes = 3;
+    public float magnitude = 0.05f; 
+    public float shakePeriod = 0.05f;
+    bool _hurting = false;
+    float _timeElapsed = 0f;
+    float _shakesOccured = 0;
+    Vector3 _hitPosition;
+
     void Start() {
         _moveSpeed = Random.Range(minSpeed, maxSpeed);
     }
 
     void Update()
     {
+        if (_hurting) {
+            Hurt();
+        } else {
+            Advance();
+        }
+    }
+
+    void Advance() {
         transform.position = new Vector2(transform.position.x, transform.position.y - _moveSpeed * Time.deltaTime);
 
         if (transform.position.y < -5.4f) {
             Destroy(this.gameObject);
+        }
+    }
+
+    void Hurt() {
+        _timeElapsed += Time.deltaTime;
+
+        if (_timeElapsed >= shakePeriod) {
+            _timeElapsed -= shakePeriod;
+            _shakesOccured++;
+
+            float horizontalShake = Random.Range(-magnitude, magnitude);
+
+            transform.position
+                = new Vector3(_hitPosition.x + horizontalShake, _hitPosition.y, _hitPosition.z);
+        }
+
+        if (_shakesOccured == shakes) {
+            _hurting = false;
+            transform.position = _hitPosition;
         }
     }
 
@@ -31,6 +66,8 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0) {
             Die();
+        } else {
+            GetHurt();
         }
     }
 
@@ -38,5 +75,12 @@ public class Enemy : MonoBehaviour
         ScreenShaker.Instance.Shake();
         Instantiate(boom, new Vector3(transform.position.x, transform.position.y, -1f), transform.rotation);
         Destroy(this.gameObject);
+    }
+
+    void GetHurt() {
+        _hitPosition = transform.position;
+        _hurting = true;
+        _timeElapsed = shakePeriod;
+        _shakesOccured = 0;
     }
 }
