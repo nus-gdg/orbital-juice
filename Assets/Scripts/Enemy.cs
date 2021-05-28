@@ -86,7 +86,6 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-    
         GameObject explosionSoundObject = GameObject.Find("Explosion Sound");
         if (explosionSoundObject != null)
         {
@@ -94,12 +93,15 @@ public class Enemy : MonoBehaviour
         }
 
         ScreenShaker shaker = ScreenShaker.Instance;
-        if (shaker !== null)
+        if (shaker != null)
         {
-
+            shaker.Shake();
         } 
-        .Shake();
-        Instantiate(boom, new Vector3(transform.position.x, transform.position.y, -1f), transform.rotation);
+        
+        if (boom != null) {
+            Instantiate(boom, new Vector3(transform.position.x, transform.position.y, -1f), transform.rotation);
+        }
+
         Destroy(this.gameObject);
     }
 

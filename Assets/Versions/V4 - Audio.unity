@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPeriod: 0.18
-  enemy: {fileID: 8550864812563367506, guid: 41661e5480684f84ca5829a35eafb0ef, type: 3}
+  enemy: {fileID: 8550864812563367506, guid: febfd43fe33644b44a7c285d23086f02, type: 3}
 --- !u!1 &1414089169
 GameObject:
   m_ObjectHideFlags: 0

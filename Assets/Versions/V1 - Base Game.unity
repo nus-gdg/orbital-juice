@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   reloadTime: 0.2
+  shootSound: {fileID: 0}
   bullet: {fileID: 4772084767555839339, guid: 354f5a4755d439c4abdb448b2b883ce8, type: 3}
 --- !u!212 &1560064080
 SpriteRenderer:
