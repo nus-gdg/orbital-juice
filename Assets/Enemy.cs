@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float maxSpeed = 2f;
 
     public GameObject boom;
+    public GameObject spark;
 
     float _moveSpeed;
 
@@ -78,6 +79,8 @@ public class Enemy : MonoBehaviour
     }
 
     void GetHurt() {
+        Instantiate(spark, new Vector3(transform.position.x, transform.position.y, -2f), transform.rotation);
+
         _hitPosition = transform.position;
         _hurting = true;
         _timeElapsed = shakePeriod;

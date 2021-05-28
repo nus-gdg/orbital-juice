@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boom : MonoBehaviour
+public class Hitspark : MonoBehaviour
 {
     public float frameDuration = 0.04f;
     public List<Sprite> sprites;

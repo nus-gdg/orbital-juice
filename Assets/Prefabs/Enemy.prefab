@@ -101,6 +101,7 @@ MonoBehaviour:
   minSpeed: 0.5
   maxSpeed: 2
   boom: {fileID: 8632747768320561032, guid: da59d49529a5a574b9ef029f310b404e, type: 3}
+  spark: {fileID: 8632747768320561032, guid: 110bae2ab6f5d5047bb496fa3a87d2ca, type: 3}
   shakes: 3
   magnitude: 0.15
   shakePeriod: 0.05
