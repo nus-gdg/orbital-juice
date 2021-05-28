@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float minSpeed = 0.5f;
     public float maxSpeed = 2f;
 
+    public GameObject boom;
+
     float _moveSpeed;
 
     void Start() {
@@ -33,6 +35,8 @@ public class Enemy : MonoBehaviour
     }
 
     void Die() {
+        ScreenShaker.Instance.Shake();
+        Instantiate(boom, new Vector3(transform.position.x, transform.position.y, -1f), transform.rotation);
         Destroy(this.gameObject);
     }
 }

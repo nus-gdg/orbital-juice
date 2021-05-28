@@ -100,6 +100,7 @@ MonoBehaviour:
   health: 2
   minSpeed: 0.5
   maxSpeed: 2
+  boom: {fileID: 8632747768320561032, guid: da59d49529a5a574b9ef029f310b404e, type: 3}
 --- !u!50 &8550864812563367512
 Rigidbody2D:
   serializedVersion: 4
