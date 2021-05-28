@@ -73,7 +73,11 @@ public class Enemy : MonoBehaviour
     }
 
     void Die() {
-        GameObject.Find("Explosion Sound").GetComponent<PlayableAudio>().Play();
+    
+        GameObject explosionSoundObject = GameObject.Find("Explosion Sound");
+        if (explosionSoundObject != null) {
+            explosionSoundObject.GetComponent<PlayableAudio>().Play();
+        }
         ScreenShaker.Instance.Shake();
         Instantiate(boom, new Vector3(transform.position.x, transform.position.y, -1f), transform.rotation);
         Destroy(this.gameObject);
